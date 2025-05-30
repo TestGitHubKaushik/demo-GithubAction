@@ -12,7 +12,8 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
-    - name: Print full private key (DANGER: REMOVE AFTER DEBUGGING)
+      
+    - name: Print full private key
       run: |
         printf '%s\n' "${{ secrets.SSH_PRIVATE_KEY }}"
 
