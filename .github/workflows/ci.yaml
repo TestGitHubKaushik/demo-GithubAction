@@ -1,0 +1,26 @@
+name: Deploy HTML to Red Hat VM
+
+on:
+  push:
+    branches:
+      - main  # change if your default branch is different
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up SSH key
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H ${{ secrets.VM_HOST }} >> ~/.ssh/known_hosts
+
+    - name: Deploy HTML files via SCP
+      run: |
+        scp -r ./path-to-your-html-files/* ${{ secrets.VM_USER }}@${{ secrets.VM_HOST }}:${{ secrets.VM_DEST_DIR }}
+
