@@ -30,7 +30,7 @@ jobs:
 
     - name: Deploy HTML files via SCP
       run: |
-        scp -r ./path-to-your-html-files/* ${{ secrets.VM_USER }}@${{ secrets.VM_HOST }}:${{ secrets.VM_DEST_DIR }}
+        scp -r /home/kaushik/actions-runner/_work/demo-GithubAction/demo-GithubAction/* ${{ secrets.VM_USER }}@${{ secrets.VM_HOST }}:${{ secrets.VM_DEST_DIR }}
 
 
 
